@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Smartwatch Health Monitor Showcase</title>
+<style>
+:root{
+  --bg0:#03111f;
+  --bg1:#071a2d;
+  --card:#0a1f35;
+  --border:#1e3a5f;
+  --text:#e2e8f0;
+  --muted:#94a3b8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:"Trebuchet MS","Segoe UI",Tahoma,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 14% -10%, #155e75 0%, transparent 44%),
+    radial-gradient(circle at 88% 0%, #0f766e 0%, transparent 40%),
+    linear-gradient(160deg,var(--bg1),#040b18 56%,var(--bg0));
+  min-height:100vh;
+  overflow-x:hidden;
+}
+.page{
+  width:100%;
+  min-height:100vh;
+  margin:0;
+  padding:18px 16px 18px;
+  display:grid;
+  grid-template-rows:auto 1fr;
+  gap:14px;
+}
+.contact-panel{
+  border:1px solid #25476f;
+  border-radius:18px;
+  background:linear-gradient(140deg,rgba(8,25,44,0.9),rgba(7,37,51,0.86));
+  padding:18px 18px 16px;
+  box-shadow:0 18px 35px rgba(2,8,22,0.45);
+}
+.contact-title{
+  font-size:1.3rem;
+  font-weight:700;
+  letter-spacing:0.4px;
+  color:#dbeafe;
+}
+.contact-sub{
+  margin-top:6px;
+  font-size:0.92rem;
+  line-height:1.5;
+  color:var(--muted);
+  max-width:760px;
+}
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:12px;
+  margin-top:12px;
+}
+.dev-card{
+  border:1px solid #24507f;
+  border-radius:12px;
+  background:rgba(6,20,35,0.78);
+  padding:12px;
+}
+.dev-name{
+  font-size:0.98rem;
+  font-weight:600;
+  color:#f0f9ff;
+}
+.dev-line{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  margin-top:6px;
+  font-size:13px;
+  line-height:1.35;
+  color:#cbd5e1;
+}
+.dev-line span{
+  min-width:62px;
+  color:#7dd3fc;
+  font-weight:600;
+}
+.dev-line a{
+  color:#67e8f9;
+  text-decoration:none;
+  word-break:break-word;
+}
+.dev-line a:hover{text-decoration:underline}
+.svg-wrap{
+  border:1px solid var(--border);
+  border-radius:18px;
+  overflow:hidden;
+  background:#040b18;
+  box-shadow:0 18px 35px rgba(2,8,22,0.48);
+  min-height:58vh;
+  height:100%;
+}
+svg{display:block;width:100%;height:100%;object-fit:contain}
+
+.site-footer{
+  margin:10px 16px 14px;
+  border:1px solid #28517e;
+  border-radius:12px;
+  padding:11px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  text-align:center;
+  font-size:12px;
+  letter-spacing:0.4px;
+  color:#cfe8ff;
+  background:linear-gradient(135deg,rgba(8,25,44,0.9),rgba(9,45,64,0.86));
+  box-shadow:0 8px 18px rgba(2,10,26,0.38), inset 0 1px 0 rgba(125,211,252,0.16);
+}
+
+.footer-brand{
+  color:#7dd3fc;
+  font-weight:700;
+}
+
+.footer-sep{
+  color:#38bdf8;
+  opacity:0.85;
+}
+
+.sf-up{stroke-dasharray:8 5;animation:sfup 1.8s linear infinite}
+.sf-dn{stroke-dasharray:8 5;animation:sfdn 1.8s linear infinite}
+.s-snr{stroke-dasharray:5 4;animation:ssnr 1.4s linear infinite}
+.s-snr2{stroke-dasharray:5 4;animation:ssnr 1.4s linear infinite 0.4s}
+.s-snr3{stroke-dasharray:5 4;animation:ssnr 1.4s linear infinite 0.9s}
+.s-snr4{stroke-dasharray:5 4;animation:ssnr 1.4s linear infinite 1.2s}
+@keyframes sfup{to{stroke-dashoffset:-52}}
+@keyframes sfdn{to{stroke-dashoffset:52}}
+@keyframes ssnr{to{stroke-dashoffset:-45}}
+.esp-r1{animation:espp 2.4s ease-in-out infinite;transform-origin:340px 654px}
+.esp-r2{animation:espp 2.4s ease-in-out infinite 0.6s;transform-origin:340px 654px}
+@keyframes espp{0%,100%{opacity:0.25;transform:scale(1)}50%{opacity:0.7;transform:scale(1.22)}}
+.ag1{animation:agblink 2.8s ease-in-out infinite}
+.ag2{animation:agblink 2.8s ease-in-out infinite 1s}
+@keyframes agblink{0%,100%{opacity:0.55}50%{opacity:1}}
+
+@media (max-width:680px){
+  .page{padding:12px 8px 14px;gap:10px}
+  .contact-panel{padding:14px}
+  .contact-title{font-size:1.15rem}
+  .contact-sub{font-size:0.86rem}
+  .team-grid{grid-template-columns:1fr}
+  .dev-line{font-size:12px}
+  .svg-wrap{min-height:52vh;border-radius:14px}
+  .site-footer{margin:8px 8px 10px;padding:9px 10px;font-size:11px;letter-spacing:0.3px;gap:6px}
+}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="contact-panel" aria-label="Contact developers">
+  <div class="contact-title">Contact the Development Team of CalmiSense</div>
+  <div class="contact-sub">Have questions, collaboration ideas, or deployment requests? Reach out directly to any developer below.</div>
+
+  <div class="team-grid">
+    <article class="dev-card">
+      <div class="dev-name">Eshraque Jabid Ifti</div>
+      <div class="dev-line"><span>Phone</span><a href="tel:+8801818235958">+880 1818235958</a></div>
+      <div class="dev-line"><span>Email</span><a href="mailto:smjabid111@gmail.com">smjabid111@gmail.com</a></div>
+      <div class="dev-line"><span>LinkedIn</span><a href="https://www.linkedin.com/in/eshraque-jabid-ifti/" target="_blank" rel="noopener noreferrer">View profile</a></div>
+    </article>
+
+    <article class="dev-card">
+      <div class="dev-name">Fihab Ifty</div>
+      <div class="dev-line"><span>Phone</span><a href="tel:+8801740479936">+880 1740479936</a></div>
+      <div class="dev-line"><span>Email</span><a href="mailto:fihabefti72@gmail.com">fihabefti72@gmail.com</a></div>
+      <div class="dev-line"><span>LinkedIn</span><a href="https://www.linkedin.com/in/fihab-ifty-233834318/" target="_blank" rel="noopener noreferrer">View profile</a></div>
+    </article>
+
+    <article class="dev-card">
+      <div class="dev-name">Mehedi Hasan</div>
+      <div class="dev-line"><span>Phone</span><a href="tel:+8801601551703">+880 1601551703</a></div>
+      <div class="dev-line"><span>Email</span><a href="mailto:mehadihasan7157@gmail.com">mehadihasan7157@gmail.com</a></div>
+      <div class="dev-line"><span>LinkedIn</span><a href="https://www.linkedin.com/in/mehedi-hasan-8180a72b6/" target="_blank" rel="noopener noreferrer">View profile</a></div>
+    </article>
+  </div>
+</section>
+
+<div class="svg-wrap">
+<svg width="100%" viewBox="0 0 680 865" role="img" aria-labelledby="showcase-title showcase-desc">
+<title id="showcase-title">Health Monitoring Smartwatch – AI Architecture Showcase</title>
+<desc id="showcase-desc">Composite showcase of a teal-titanium smartwatch displaying Bengali stress-reduction feedback with a heartbeat waveform, an exploded sensor layer view showing MAX30102, GSR electrodes, MAX30205, LSM6DS3 accelerometer and ESP32-S3, and a cloud AI system with Monitoring and Conversation agents connected via LangGraph.</desc>
+
+<defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <linearGradient id="bgr" x1="0" y1="0" x2="0.8" y2="1">
+    <stop offset="0%" stop-color="#0c3a30"/>
+    <stop offset="42%" stop-color="#0b2340"/>
+    <stop offset="100%" stop-color="#040b18"/>
+  </linearGradient>
+  <radialGradient id="scrg" cx="48%" cy="44%" r="54%">
+    <stop offset="0%" stop-color="#0f2a48"/>
+    <stop offset="100%" stop-color="#050d1f"/>
+  </radialGradient>
+  <linearGradient id="casg" x1="0.1" y1="0" x2="0.9" y2="1">
+    <stop offset="0%" stop-color="#cad4de"/>
+    <stop offset="52%" stop-color="#9daab6"/>
+    <stop offset="100%" stop-color="#6d7e8b"/>
+  </linearGradient>
+  <linearGradient id="bndg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#0e9488"/>
+    <stop offset="100%" stop-color="#0f766e"/>
+  </linearGradient>
+  <clipPath id="scc">
+    <circle cx="340" cy="308" r="109"/>
+  </clipPath>
+</defs>
+
+<!-- Background -->
+<rect width="680" height="865" fill="url(#bgr)"/>
+
+<!-- Ambient circuit traces BG -->
+<path d="M18,120 L55,120 L55,160 L95,160" stroke="#1a4a3a" stroke-width="1" fill="none" opacity="0.4"/>
+<path d="M18,300 L42,300 L42,340" stroke="#1a4a3a" stroke-width="1" fill="none" opacity="0.3"/>
+<circle cx="95" cy="160" r="3" fill="#1a4a3a" opacity="0.45"/>
+<circle cx="55" cy="120" r="2" fill="#1a4a3a" opacity="0.4"/>
+<path d="M662,130 L626,130 L626,168 L590,168" stroke="#1a3055" stroke-width="1" fill="none" opacity="0.35"/>
+<path d="M662,280 L640,280 L640,240" stroke="#1a3055" stroke-width="1" fill="none" opacity="0.3"/>
+<circle cx="590" cy="168" r="3" fill="#1a3055" opacity="0.38"/>
+<path d="M80,450 L80,490 L50,490" stroke="#112233" stroke-width="1" fill="none" opacity="0.3"/>
+<path d="M600,470 L620,470 L620,510" stroke="#112233" stroke-width="1" fill="none" opacity="0.28"/>
+
+<!-- ══ CLOUD SECTION ══ -->
+<rect x="80" y="30" width="520" height="154" rx="24" fill="#09192e" stroke="#1d4ed8" stroke-width="1.2" opacity="0.92"/>
+<rect x="84" y="34" width="512" height="146" rx="22" fill="none" stroke="#3b82f6" stroke-width="0.5" opacity="0.35"/>
+<!-- Top label -->
+<text x="340" y="60" text-anchor="middle" fill="#64748b" font-family="sans-serif" font-size="10" font-weight="500" letter-spacing="1.5">AI PROCESSING PIPELINE</text>
+
+<!-- Monitoring Agent -->
+<g class="ag1">
+  <circle cx="120" cy="108" r="28" fill="#162050" stroke="#3b82f6" stroke-width="1.8"/>
+  <circle cx="120" cy="108" r="20" fill="#1a3080" stroke="#60a5fa" stroke-width="0.8"/>
+</g>
+<text x="120" y="104" text-anchor="middle" fill="#bfdbfe" font-family="sans-serif" font-size="9" font-weight="500">Monitoring</text>
+<text x="120" y="116" text-anchor="middle" fill="#93c5fd" font-family="sans-serif" font-size="8">Agent</text>
+<text x="120" y="148" text-anchor="middle" fill="#60a5fa" font-family="sans-serif" font-size="9" opacity="0.9">RF ML Model</text>
+<text x="120" y="160" text-anchor="middle" fill="#60a5fa" font-family="sans-serif" font-size="7.5" opacity="0.75">(Stress Prediction)</text>
+
+<!-- Conversation Agent (generates empathic messages) -->
+<g class="ag2">
+  <circle cx="258" cy="108" r="28" fill="#0d2e2a" stroke="#14b8a6" stroke-width="1.8"/>
+  <circle cx="258" cy="108" r="20" fill="#143e38" stroke="#2dd4bf" stroke-width="0.8"/>
+</g>
+<text x="258" y="104" text-anchor="middle" fill="#ccfbf1" font-family="sans-serif" font-size="9" font-weight="500">Conversation</text>
+<text x="258" y="116" text-anchor="middle" fill="#99f6e4" font-family="sans-serif" font-size="8">Agent</text>
+<text x="258" y="148" text-anchor="middle" fill="#2dd4bf" font-family="sans-serif" font-size="9" opacity="0.9">LLM</text>
+<text x="258" y="160" text-anchor="middle" fill="#2dd4bf" font-family="sans-serif" font-size="7.5" opacity="0.75">(Empathic Messages)</text>
+
+<!-- Transcript Agent (with TTS) -->
+<g class="ag1">
+  <circle cx="396" cy="108" r="28" fill="#1a1f35" stroke="#8b5cf6" stroke-width="1.8"/>
+  <circle cx="396" cy="108" r="20" fill="#2d1b69" stroke="#a78bfa" stroke-width="0.8"/>
+</g>
+<text x="396" y="104" text-anchor="middle" fill="#ddd6fe" font-family="sans-serif" font-size="9" font-weight="500">Transcript</text>
+<text x="396" y="116" text-anchor="middle" fill="#c4b5fd" font-family="sans-serif" font-size="8">Agent</text>
+<text x="396" y="148" text-anchor="middle" fill="#a78bfa" font-family="sans-serif" font-size="9" opacity="0.9">TTS Engine</text>
+
+<!-- Alert Agent (monitors high stress) -->
+<g class="ag2">
+  <circle cx="534" cy="108" r="28" fill="#3d1f1f" stroke="#ef4444" stroke-width="1.8"/>
+  <circle cx="534" cy="108" r="20" fill="#5d2424" stroke="#f87171" stroke-width="0.8"/>
+</g>
+<text x="534" y="104" text-anchor="middle" fill="#fee2e2" font-family="sans-serif" font-size="9" font-weight="500">Alert</text>
+<text x="534" y="116" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="8">Agent</text>
+<text x="534" y="148" text-anchor="middle" fill="#f87171" font-family="sans-serif" font-size="9" opacity="0.9">Alert (1min check)</text>
+<text x="534" y="160" text-anchor="middle" fill="#f87171" font-family="sans-serif" font-size="7.5" opacity="0.75">(Parents/Care)</text>
+
+<!-- Links between agents -->
+<line x1="148" y1="108" x2="230" y2="108" stroke="#2d3748" stroke-width="1" stroke-dasharray="4 3" opacity="0.6"/>
+<line x1="286" y1="108" x2="368" y2="108" stroke="#2d3748" stroke-width="1" stroke-dasharray="4 3" opacity="0.6"/>
+<line x1="424" y1="108" x2="506" y2="108" stroke="#2d3748" stroke-width="1" stroke-dasharray="4 3" opacity="0.6"/>
+<!-- LangGraph connections -->
+<circle cx="189" cy="108" r="4" fill="#1e293b" stroke="#4b5563" stroke-width="0.8" opacity="0.8"/>
+<circle cx="327" cy="108" r="4" fill="#1e293b" stroke="#4b5563" stroke-width="0.8" opacity="0.8"/>
+<circle cx="465" cy="108" r="4" fill="#1e293b" stroke="#4b5563" stroke-width="0.8" opacity="0.8"/>
+
+<!-- ══ VERTICAL DATA STREAMS (Cloud ↔ Watch) ══ -->
+<!-- Data going UP (blue) -->
+<path class="sf-up" d="M333,186 L333,206" stroke="#3b82f6" stroke-width="1.8" fill="none" opacity="0.85" marker-end="url(#arw)"/>
+<!-- Action Text feedback going DOWN (green) -->
+<path class="sf-dn" d="M347,206 L347,186" stroke="#10b981" stroke-width="1.8" fill="none" opacity="0.85" marker-end="url(#arw)"/>
+<!-- Action Text label -->
+<rect x="272" y="212" width="96" height="22" rx="5" fill="#052e16" stroke="#10b981" stroke-width="0.8" opacity="0.9"/>
+<text x="320" y="226" text-anchor="middle" fill="#34d399" font-family="sans-serif" font-size="9" font-weight="500">Action Text ↓</text>
+
+<!-- ══ WATCH BANDS ══ -->
+<!-- Top band -->
+<path d="M304,200 L376,200 L372,154 L308,154 Z" fill="url(#bndg)" rx="4"/>
+<path d="M304,200 L376,200 L372,154 L308,154 Z" fill="none" stroke="#0f766e" stroke-width="0.8" opacity="0.5"/>
+<rect x="310" y="157" width="60" height="6" rx="2" fill="#0f766e" opacity="0.4"/>
+<rect x="312" y="167" width="56" height="4" rx="2" fill="#0f766e" opacity="0.3"/>
+<rect x="312" y="175" width="56" height="4" rx="2" fill="#0f766e" opacity="0.3"/>
+<!-- Bottom band -->
+<path d="M304,416 L376,416 L380,462 L300,462 Z" fill="url(#bndg)"/>
+<path d="M304,416 L376,416 L380,462 L300,462 Z" fill="none" stroke="#0f766e" stroke-width="0.8" opacity="0.5"/>
+<rect x="310" y="434" width="60" height="4" rx="2" fill="#0f766e" opacity="0.3"/>
+<rect x="310" y="443" width="60" height="4" rx="2" fill="#0f766e" opacity="0.3"/>
+<rect x="312" y="452" width="56" height="4" rx="2" fill="#0f766e" opacity="0.3"/>
+
+<!-- ══ WATCH CASE ══ -->
+<!-- 3/4 angle depth strips -->
+<path d="M468,274 Q480,284 480,308 Q480,332 468,342" stroke="#8a9aa8" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.6"/>
+<path d="M468,274 Q478,284 478,308 Q478,332 468,342" stroke="#c0cad4" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.25"/>
+
+<!-- Case main body -->
+<circle cx="340" cy="308" r="130" fill="url(#casg)"/>
+<circle cx="340" cy="308" r="130" fill="none" stroke="#94a3b0" stroke-width="1.5" opacity="0.55"/>
+<!-- Inner bevel ring -->
+<circle cx="340" cy="308" r="120" fill="none" stroke="#b8c4ce" stroke-width="1.5" opacity="0.2"/>
+<circle cx="340" cy="308" r="114" fill="none" stroke="#6a7880" stroke-width="0.8" opacity="0.35"/>
+
+<!-- Screen base -->
+<circle cx="340" cy="308" r="112" fill="url(#scrg)"/>
+
+<!-- Subtle glass sheen -->
+<ellipse cx="318" cy="264" rx="52" ry="22" fill="white" opacity="0.025" transform="rotate(-18,318,264)"/>
+
+<!-- ══ SCREEN CONTENT (clipped) ══ -->
+<g clip-path="url(#scc)">
+
+  <!-- Status bar -->
+  <text x="290" y="243" fill="#475569" font-family="sans-serif" font-size="9">09:42</text>
+  <circle cx="388" cy="240" r="4" fill="#22c55e" opacity="0.8"/>
+
+  <!-- BPM label -->
+  <text x="284" y="292" fill="#a7f3d0" font-family="sans-serif" font-size="11" font-weight="500">72 BPM</text>
+
+  <!-- Heartbeat path (animated draw) -->
+  <path d="M215,320 L244,320 L252,296 L260,346 L268,314 L276,323 L316,323" stroke="#4ADE80" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-dasharray="192" stroke-dashoffset="192">
+    <animate attributeName="stroke-dashoffset" values="192;0;0;192" keyTimes="0;0.55;0.88;1" dur="2.5s" repeatCount="indefinite"/>
+  </path>
+  <!-- Flat tail -->
+  <line x1="316" y1="323" x2="420" y2="323" stroke="#4ADE80" stroke-width="1.5" opacity="0.35"/>
+  <!-- Scanning cursor dot -->
+  <circle cx="316" cy="323" r="3.5" fill="#4ADE80" opacity="0.9">
+    <animate attributeName="cx" values="316;316;215;316" keyTimes="0;0.55;0.89;1" dur="2.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.9;0.9;0;0.9" keyTimes="0;0.55;0.56;1" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Bengali text overlay -->
+  <rect x="220" y="335" width="240" height="34" rx="6" fill="#052e16" opacity="0.8"/>
+  <text x="340" y="356" text-anchor="middle" fill="#4ADE80" font-family="Nirmala UI, Vrinda, Kohinoor Bangla, serif" font-size="13.5">আপনার মানসিক চাপ কমছে</text>
+
+  <!-- Thumbs-up icon (SVG shape) -->
+  <g transform="translate(385,292)">
+    <rect x="-2" y="8" width="7" height="10" rx="2" fill="#16a34a"/>
+    <path d="M5,18 L5,9 C5,7.3 6,6 7.5,5.5 L11,4 L11,0 C11,-1 12,-1.5 13,-1 C14,-0.5 14.5,0.5 13.5,3 L12,6 L17,6 C18.2,6 19,7 18.5,8 L16.5,16 C16.2,17.2 15,18 13.8,18 Z" fill="#22c55e"/>
+  </g>
+
+  <!-- Stress indicator -->
+  <text x="320" y="396" text-anchor="middle" fill="#5eead4" font-family="sans-serif" font-size="9" opacity="0.75">Stress: Low ↓</text>
+
+</g>
+
+<!-- Screen border ring -->
+<circle cx="340" cy="308" r="112" fill="none" stroke="#1e3a5f" stroke-width="1.5"/>
+
+<!-- Crown button -->
+<rect x="471" y="294" width="9" height="28" rx="4" fill="#9daab6" stroke="#7a8890" stroke-width="0.8"/>
+<rect x="472" y="297" width="7" height="4" rx="1" fill="#b0bac6" opacity="0.5"/>
+<rect x="472" y="316" width="7" height="4" rx="1" fill="#b0bac6" opacity="0.5"/>
+
+<!-- ══ CONNECTOR WATCH → EXPLODED ══ -->
+<line x1="340" y1="462" x2="340" y2="508" stroke="#334155" stroke-width="1" stroke-dasharray="4 3" opacity="0.55"/>
+<circle cx="340" cy="508" r="3" fill="#334155" opacity="0.5"/>
+<text x="355" y="488" fill="#475569" font-family="sans-serif" font-size="8.5">sensor data</text>
+
+<!-- ══ EXPLODED VIEW SECTION ══ -->
+<rect x="38" y="514" width="604" height="320" rx="16" fill="#050f1c" stroke="#1e3a5f" stroke-width="1" opacity="0.88"/>
+<rect x="40" y="516" width="600" height="316" rx="15" fill="none" stroke="#1d3557" stroke-width="0.5" opacity="0.45"/>
+<!-- Section title -->
+<text x="340" y="538" text-anchor="middle" fill="#475569" font-family="sans-serif" font-size="10" font-weight="500" letter-spacing="2">INTERNAL ARCHITECTURE</text>
+
+<!-- ── ESP32-S3 Chip ── -->
+<!-- Pulsing rings -->
+<circle class="esp-r1" cx="340" cy="654" r="36" fill="none" stroke="#3b82f6" stroke-width="10" opacity="0.15"/>
+<circle class="esp-r2" cx="340" cy="654" r="48" fill="none" stroke="#3b82f6" stroke-width="6" opacity="0.1"/>
+<!-- Chip body -->
+<rect x="308" y="622" width="64" height="64" rx="7" fill="#1e3a8a" stroke="#3b82f6" stroke-width="1.8"/>
+<rect x="312" y="626" width="56" height="56" rx="5" fill="#1a45c8" stroke="#60a5fa" stroke-width="0.8" opacity="0.7"/>
+<!-- Chip die (inner square) -->
+<rect x="324" y="638" width="32" height="32" rx="2" fill="#1e40af" stroke="#93c5fd" stroke-width="0.6" opacity="0.8"/>
+<!-- Small internal traces -->
+<line x1="332" y1="638" x2="332" y2="670" stroke="#60a5fa" stroke-width="0.5" opacity="0.4"/>
+<line x1="340" y1="638" x2="340" y2="670" stroke="#60a5fa" stroke-width="0.5" opacity="0.4"/>
+<line x1="348" y1="638" x2="348" y2="670" stroke="#60a5fa" stroke-width="0.5" opacity="0.4"/>
+<!-- Chip pins left -->
+<rect x="303" y="633" width="6" height="4" rx="1" fill="#4b5563"/>
+<rect x="303" y="643" width="6" height="4" rx="1" fill="#4b5563"/>
+<rect x="303" y="653" width="6" height="4" rx="1" fill="#4b5563"/>
+<rect x="303" y="663" width="6" height="4" rx="1" fill="#4b5563"/>
+<!-- Chip pins right -->
+<rect x="371" y="633" width="6" height="4" rx="1" fill="#4b5563"/>
+<rect x="371" y="643" width="6" height="4" rx="1" fill="#4b5563"/>
+<rect x="371" y="653" width="6" height="4" rx="1" fill="#4b5563"/>
+<rect x="371" y="663" width="6" height="4" rx="1" fill="#4b5563"/>
+<!-- Chip pins top -->
+<rect x="327" y="617" width="4" height="6" rx="1" fill="#4b5563"/>
+<rect x="338" y="617" width="4" height="6" rx="1" fill="#4b5563"/>
+<rect x="349" y="617" width="4" height="6" rx="1" fill="#4b5563"/>
+<!-- Chip pins bottom -->
+<rect x="327" y="687" width="4" height="6" rx="1" fill="#4b5563"/>
+<rect x="338" y="687" width="4" height="6" rx="1" fill="#4b5563"/>
+<rect x="349" y="687" width="4" height="6" rx="1" fill="#4b5563"/>
+<!-- ESP32 label -->
+<text x="340" y="650" text-anchor="middle" fill="#bfdbfe" font-family="sans-serif" font-size="9" font-weight="500">ESP32</text>
+<text x="340" y="661" text-anchor="middle" fill="#93c5fd" font-family="sans-serif" font-size="8">-S3</text>
+<!-- Pulsing center dot -->
+<circle cx="340" cy="654" r="4" fill="#60a5fa" opacity="0.9">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1.6s" repeatCount="indefinite"/>
+  <animate attributeName="r" values="3;5;3" dur="1.6s" repeatCount="indefinite"/>
+</circle>
+
+<!-- ── MAX30102 Sensor (top-left) ── -->
+<rect x="58" y="553" width="138" height="68" rx="9" fill="#0a2010" stroke="#16a34a" stroke-width="1.4"/>
+<rect x="62" y="557" width="130" height="60" rx="7" fill="#0d2614" stroke="#22c55e" stroke-width="0.6" opacity="0.5"/>
+<!-- LED indicators -->
+<circle cx="78" cy="572" r="5" fill="#dc2626" opacity="0.7"/>
+<circle cx="91" cy="572" r="5" fill="#991b1b" opacity="0.5"/>
+<text x="165" y="572" text-anchor="end" fill="#86efac" font-family="sans-serif" font-size="10" font-weight="500">MAX30102</text>
+<text x="127" y="585" text-anchor="middle" fill="#4ade80" font-family="sans-serif" font-size="8.5">BVP / Heart Rate</text>
+<text x="127" y="597" text-anchor="middle" fill="#22c55e" font-family="sans-serif" font-size="8.5">64 Hz</text>
+<text x="127" y="610" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="7.5" opacity="0.8">PPG · SpO₂</text>
+
+<!-- ── GSR Pad Electrodes (bottom-left) ── -->
+<rect x="58" y="712" width="138" height="68" rx="9" fill="#1a1408" stroke="#ca8a04" stroke-width="1.4"/>
+<rect x="62" y="716" width="130" height="60" rx="7" fill="#1c1604" stroke="#eab308" stroke-width="0.6" opacity="0.5"/>
+<!-- Electrode pads -->
+<rect x="72" y="725" width="16" height="10" rx="2" fill="#ca8a04" opacity="0.7"/>
+<rect x="72" y="739" width="16" height="10" rx="2" fill="#ca8a04" opacity="0.7"/>
+<line x1="80" y1="735" x2="80" y2="739" stroke="#eab308" stroke-width="1" opacity="0.5"/>
+<text x="165" y="726" text-anchor="end" fill="#fde047" font-family="sans-serif" font-size="10" font-weight="500">GSR Electrodes</text>
+<text x="127" y="741" text-anchor="middle" fill="#facc15" font-family="sans-serif" font-size="8.5">EDA / Skin Conductance</text>
+<text x="127" y="753" text-anchor="middle" fill="#eab308" font-family="sans-serif" font-size="8.5">4 Hz</text>
+<text x="127" y="766" text-anchor="middle" fill="#92400e" font-family="sans-serif" font-size="7.5" opacity="0.85">Galvanic response</text>
+
+<!-- ── MAX30205 Temp Sensor (top-right) ── -->
+<rect x="484" y="553" width="138" height="68" rx="9" fill="#112239" stroke="#38bdf8" stroke-width="1.4"/>
+<rect x="488" y="557" width="130" height="60" rx="7" fill="#0f243f" stroke="#7dd3fc" stroke-width="0.6" opacity="0.55"/>
+<!-- Temp sensor visual element -->
+<rect x="497" y="565" width="10" height="30" rx="3" fill="#0284c7" opacity="0.7"/>
+<rect x="499" y="579" width="6" height="14" rx="2" fill="#38bdf8" opacity="0.85"/>
+<text x="610" y="572" text-anchor="end" fill="#bae6fd" font-family="sans-serif" font-size="10" font-weight="500">MAX30205</text>
+<text x="557" y="585" text-anchor="middle" fill="#7dd3fc" font-family="sans-serif" font-size="8.5">Body Temperature</text>
+<text x="557" y="597" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="8.5">4 Hz</text>
+<text x="557" y="610" text-anchor="middle" fill="#0ea5e9" font-family="sans-serif" font-size="7.5" opacity="0.85">±0.1°C accuracy</text>
+
+<!-- ── LSM6DS3 Accelerometer (bottom-right) ── -->
+<rect x="484" y="712" width="138" height="68" rx="9" fill="#16250f" stroke="#84cc16" stroke-width="1.4"/>
+<rect x="488" y="716" width="130" height="60" rx="7" fill="#1a2b12" stroke="#bef264" stroke-width="0.6" opacity="0.55"/>
+<!-- Motion icon -->
+<rect x="496" y="724" width="20" height="16" rx="3" fill="#65a30d" opacity="0.45"/>
+<line x1="500" y1="735" x2="512" y2="735" stroke="#d9f99d" stroke-width="1.2" opacity="0.9"/>
+<line x1="506" y1="729" x2="506" y2="741" stroke="#d9f99d" stroke-width="1.2" opacity="0.9"/>
+<circle cx="520" cy="744" r="3.5" fill="#a3e635" opacity="0.8"/>
+<text x="610" y="726" text-anchor="end" fill="#ecfccb" font-family="sans-serif" font-size="10" font-weight="500">Accelerometer</text>
+<text x="557" y="741" text-anchor="middle" fill="#d9f99d" font-family="sans-serif" font-size="8.5">LSM6DS3 (IMU)</text>
+<text x="557" y="753" text-anchor="middle" fill="#bef264" font-family="sans-serif" font-size="8.5">26-104 Hz</text>
+<text x="557" y="766" text-anchor="middle" fill="#84cc16" font-family="sans-serif" font-size="7.5" opacity="0.85">Motion / Activity</text>
+
+<!-- ── DATA STREAMS (sensors → ESP32) ── -->
+<!-- MAX30102 → ESP32 -->
+<path class="s-snr" d="M196,587 Q248,600 308,636" fill="none" stroke="#4ade80" stroke-width="2" opacity="0.9" marker-end="url(#arw)"/>
+<circle cx="196" cy="587" r="4" fill="#4ade80" opacity="0.85"/>
+
+<!-- GSR → ESP32 -->
+<path class="s-snr2" d="M196,746 Q252,710 308,670" fill="none" stroke="#facc15" stroke-width="2" opacity="0.9" marker-end="url(#arw)"/>
+<circle cx="196" cy="746" r="4" fill="#facc15" opacity="0.85"/>
+
+<!-- MAX30205 → ESP32 -->
+<path class="s-snr3" d="M484,587 Q432,605 372,636" fill="none" stroke="#7dd3fc" stroke-width="2" opacity="0.9" marker-end="url(#arw)"/>
+<circle cx="484" cy="587" r="4" fill="#7dd3fc" opacity="0.85"/>
+
+<!-- LSM6DS3 → ESP32 -->
+<path class="s-snr4" d="M484,746 Q434,716 372,670" fill="none" stroke="#a3e635" stroke-width="2" opacity="0.9" marker-end="url(#arw)"/>
+<circle cx="484" cy="746" r="4" fill="#a3e635" opacity="0.85"/>
+
+<!-- ── ESP32 → Cloud data stream (up through watch) ── -->
+<path class="sf-up" d="M340,617 L340,520" stroke="#3b82f6" stroke-width="1.6" fill="none" opacity="0.8"/>
+
+<!-- ── Bottom label ── -->
+<text x="340" y="823" text-anchor="middle" fill="#334155" font-family="sans-serif" font-size="9" letter-spacing="1">Multi-modal Physiological Sensors</text>
+
+</svg>
+</div>
+</main>
+<footer class="site-footer"><span class="footer-brand">IMI Technologies Ltd.</span><span class="footer-sep">•</span><span>All rights reserved.</span></footer>
+</body>
+</html>
